@@ -1,111 +1,182 @@
-.attribution {
-    font-size: 11px;
-    text-align: center;
+:root {
+    --primary-900: hsl(256, 43%, 7%);
+    --primary-800: hsl(240, 24%, 13%);
+    --primary-700: hsl(243, 26%, 15%);
+    --primary-600: hsl(252, 9%, 22%);
+    --primary-500: hsl(259, 13%, 28%);
+    --primary-400: hsl(254, 22%, 32%);
+
+    --primary-300: hsl(251, 13%, 68%);
+    --primary-200: hsl(240, 15%, 76%);
+    --primary-100: hsl(240, 21%, 88%);
+
+    --neutral-100: hsl(0, 0%, 100%);
+
+    --accent-400: hsl(93, 60%, 69%);
+
+    --text-1: var(--neutral-100);
+    --text-2: var(--primary-100);
+    --text-3: var(--primary-200);
+
+    --surface-1: var(--primary-900);
+    --surface-2: var(--primary-800);
+    --surface-3: var(--primary-700);
+
+    --border-1: var(--primary-500);
+    /* top */
+    --border-2: var(--primary-600);
+    /* bottom */
 }
 
-.attribution a {
-    color: hsl(228, 45%, 44%);
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html {
+    color-scheme: dark;
+    font-family: system-ui;
 }
 
 body {
+    min-block-size: 100vb;
+    background-size: cover;
+    color: var(--text-3);
+    background-color: var(--primary-900);
+    background-image: linear-gradient(hsl(from var(--primary-700) h s l / 0.7) 0 0),
+        url("https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-position: top left;
+    background-size: 100%;
+    line-height: 1.5;
+    padding: 10rem 2rem;
+}
+
+h1 {
+    color: var(--text-1);
+}
+
+h1 {
+    font-size: 1.325rem;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 1.125rem;
+    font-weight: 400;
+}
+
+.text-accent {
+    color: var(--accent-400);
+}
+
+.flex-between {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    gap: 16px;
+    justify-content: space-between;
+}
+
+.card {
+    max-inline-size: 500px;
+    margin-inline: auto;
+    padding: 21px;
+
+    display: grid;
+    gap: 1lh;
+}
+
+.referral-code {
+    display: flex;
     align-items: center;
-    height: 100vh;
-    background: hsl(0deg 0% 95%);
-    margin: 0;
+    gap: 10px;
+    background: hsl(from var(--surface-1) h s l / 0.5);
+    padding: 0.5ex 1ch;
+    font-size: 1.125rem;
+    border-radius: 12px;
+    color: var(--text-1);
+    letter-spacing: 3px;
+}
+
+.copy {
+    cursor: pointer;
+    background: 0;
+    border: 0;
     padding: 0;
-}
+    height: 1.5lh;
 
-header {
-    width: 100%;
-    padding: 2rem;
-    z-index: 2;
-
-    --thickness: 4px;
-    position: sticky;
-    top: 0;
-    /*
-      Very opaque, for unsupported browsers.
-      Overwritten in the feature queries below.
-    */
-    background: hsl(0deg 0% 100% / 0.95);
-}
-
-/*
-    This code gets applied for folks using
-    browsers that support backdrop-filter.
-  */
-@supports (backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px)) {
-    header {
-        background: hsl(0deg 0% 100% / 0.5);
-    }
-
-    .backdrop {
-        position: absolute;
-        inset: 0;
-        /*
-        These prefixed properties are usually
-        added automatically by tooling:
-      */
-        -webkit-backdrop-filter: blur(16px);
-        backdrop-filter: blur(16px);
-        background: linear-gradient(to bottom,
-                hsl(0deg 0% 95%),
-                transparent 50%);
-        pointer-events: none;
-    }
-
-    .backdrop-edge {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: var(--thickness);
-        background: hsl(0deg 0% 100% / 0.1);
-        -webkit-backdrop-filter: blur(12px) brightness(0.96);
-        backdrop-filter: blur(12px) brightness(0.96);
-        transform: translateY(100%);
-        pointer-events: none;
+    svg {
+        fill: var(--text-1);
+        width: 3ch;
+        height: 3ch;
     }
 }
 
-/*
-    This code gets applied for folks using
-    browsers that support mask-image. This
-    adds the "consider near elements"
-    optimization discussed in this article.
-  */
-@supports (mask-image: none) or (-webkit-mask-image: none) {
-    .backdrop {
-        height: 200%;
-        -webkit-mask-image: linear-gradient(to bottom,
-                black 0% 50%,
-                transparent 50% 100%);
-        mask-image: linear-gradient(to bottom,
-                black 0% 50%,
-                transparent 50% 100%);
-    }
+.referred-users {
+    text-align: end;
+}
 
-    .backdrop-edge {
-        height: 100%;
-        inset: 0;
-        -webkit-mask-image: linear-gradient(to bottom,
-                black 0,
-                black var(--thickness),
-                transparent var(--thickness));
-        mask-image: linear-gradient(to bottom,
-                black 0,
-                black var(--thickness),
-                transparent var(--thickness));
+.user-count {
+    font-size: 1.125rem;
+    color: var(--text-1);
+}
+
+.rewards {
+    text-align: center;
+    color: var(--text-1);
+    background: hsl(from var(--surface-1) h s l / 0.5);
+    padding: 1ex 3ch;
+    border-radius: 12px;
+
+    h2 {
+        color: var(--text-3);
     }
 }
 
-.ball {
-    width: 64px;
-    height: 64px;
-    background: red;
-    border-radius: 50%;
-    margin-top: 2rem;
+/* .card {
+  background-color: var(--surface-1);
+  border-radius: 1rem;
+
+  border: transparent 1px solid;
+  background: radial-gradient(
+        circle at 50% 250%,
+        var(--primary-500),
+        var(--surface-1)
+      )
+      padding-box,
+    linear-gradient(var(--border-1), var(--border-2)) border-box;
+} */
+
+.card {
+    --border-width: 1px;
+    border-radius: 1rem;
+    position: relative;
+
+    background: hsl(from var(--surface-3) h s l / 0.25);
+    backdrop-filter: blur(12px);
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border-radius: inherit;
+    border: var(--border-width) solid transparent;
+    background: linear-gradient(var(--border-1), var(--border-2)) border-box;
+    mask: linear-gradient(black, black) border-box,
+        linear-gradient(black, black) padding-box;
+    mask-composite: subtract;
+}
+
+
+.attribution {
+    text-align: center;
+}
+
+.attribution>a {
+    color: var(--accent-400);
 }
